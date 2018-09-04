@@ -106,7 +106,12 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let albumViewController = AlbumViewController()
-        albumViewController.album = albums.element(at: indexPath.row)
+        guard
+            let selectedAlbum = albums.element(at: indexPath.row)
+        else {
+            return
+        }
+        albumViewController.album = selectedAlbum
         self.navigationController?.pushViewController(albumViewController, animated: true)
     }
     
